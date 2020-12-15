@@ -5,10 +5,10 @@ import { login } from '../../constants';
 import { useUser } from '../../store/user/hook';
 
 export default function ProtectedRoute({ component, ...rest }: any) {
-  const { user } = useUser();
+  const { status } = useUser();
 
   const routeComponent = (props: any) =>
-    user.username ? (
+    status === 'logged-in' ? (
       React.createElement(component, props)
     ) : (
       <Redirect to={login} />
