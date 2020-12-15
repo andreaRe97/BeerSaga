@@ -1,0 +1,1 @@
+export const loginUserUrl = 'http://localhost:1337/auth/local';

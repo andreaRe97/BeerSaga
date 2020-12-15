@@ -1,0 +1,30 @@
+html, body, #root {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+div#landing-page {
+  height: 90vh;
+  overflow: hidden;
+}
+
+body {
+  background: rgb(125, 89, 32);
+  background: linear-gradient(
+    90deg,
+    rgb(125, 88, 32) 0%,
+    rgb(185, 120, 0) 40%,
+    rgb(150, 110, 47) 100%
+  );
+}
+
+main h1 {
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.7);
+}
+
+@media only screen and (min-width: 768px) {
+  main h1 {
+    font-size: 10rem;
+    text-shadow: 0.3rem 0.3rem 0.2rem rgba(0, 0, 0, 0.7);
+  }
+}
