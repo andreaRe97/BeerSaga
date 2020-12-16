@@ -14,14 +14,13 @@ export default function BeerDetail({ location }: RouteComponentProps) {
 
   function renderRow(key: string, value: string | number) {
     return (
-      <>
-        <ListGroup.Item>
+        <ListGroup.Item key={key}>
           <Row>
-            <Col xs={6} className="text-capitalize">{key}</Col>
+            <Col xs={6} className="text-capitalize"><span className="font-weight-bold">{key}</span></Col>
             <Col xs={6}>{value}</Col>
           </Row>
         </ListGroup.Item>
-      </>
+
     );
   }
 

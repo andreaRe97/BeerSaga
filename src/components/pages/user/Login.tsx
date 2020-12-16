@@ -1,8 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useHistory } from 'react-router';
+import { useNavigation } from '../../../hooks';
 
-import { home } from '../../../constants';
 import { AuthFields } from '../../../models/User';
 import { useUser } from '../../../store/user/hook';
 
@@ -12,15 +11,14 @@ export default function Login() {
     password: '',
   });
   const { loginUser } = useUser();
-  const history = useHistory();
-
+  const { goToBeerList } = useNavigation();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setAuthFields({ ...authFields, [e.target.name]: e.target.value });
 
-  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await loginUser(authFields);
-    history.push(home);
+    loginUser(authFields);
+    goToBeerList();
   };
 
   return (

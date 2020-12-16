@@ -1,30 +1,22 @@
 import React, { FormEvent, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useHistory } from 'react-router';
+import { useNavigation } from '../../../hooks';
 
-import { beerList } from '../../../constants';
 import { Beer } from '../../../models/Beer';
 import { useBeers } from '../../../store/beers/hook';
 
 export default function BeerNew() {
-  const [beer, setBeer] = useState<Partial<Beer>>({
-    brand: '',
-    name: '',
-    style: '',
-    yeast: '',
-    malts: '',
-    hop: '',
-  });
+  const [beer, setBeer] = useState<Partial<Beer>>();
   const { createBeer } = useBeers();
-  const history = useHistory();
+  const { goToBeerList } = useNavigation();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setBeer({ ...beer, [e.target.name]: e.target.value });
 
-  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await createBeer(beer as Beer);
-    history.push(beerList);
+    createBeer(beer as Beer);
+    goToBeerList();
   };
 
   return (

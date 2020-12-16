@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Beer } from '../../models/Beer';
 
+import { Beer } from '../../models/Beer';
 import { AppState } from '../rootReducer';
-import { createBeerRequest } from './api';
+import { createBeerRequest, putBeerRequest } from './api';
 import { fetchBeersRequest } from './api/fetch';
 import { BeerState } from './reducers';
 
@@ -24,11 +24,19 @@ export function useBeers() {
     [dispatch]
   );
 
+  const putBeer = useCallback(
+    (beer: Beer) => {
+      dispatch(putBeerRequest(beer));
+    },
+    [dispatch]
+  );
+
   return {
     beers,
     status,
     errors,
     fetchBeers,
     createBeer,
+    putBeer
   };
 }

@@ -23,6 +23,7 @@ export default function BeersList() {
     <div className="d-flex align-items-center row h-100 mx-2 mt-2">
       {status === 'fetching' && <LoadingSpinner message="Fetching beers" />}
       {renderBeers()}
+      
     </div>
   );
 }

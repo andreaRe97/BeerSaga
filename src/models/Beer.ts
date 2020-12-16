@@ -8,4 +8,5 @@ export type Beer = {
   malts: string;
   ibu: number;
   alcohol: number;
+  isFavourite: boolean;
 }

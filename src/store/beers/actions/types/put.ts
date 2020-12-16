@@ -1,0 +1,4 @@
+export const PUT_BEER_REQUEST = 'PUT_BEER_REQUEST';
+export const PUT_BEER_SUCCESS = 'PUT_BEER_SUCCESS';
+export const PUT_BEER_FAILURE = 'PUT_BEER_FAILURE';
+

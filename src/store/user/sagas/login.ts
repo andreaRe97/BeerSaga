@@ -24,5 +24,6 @@ function* workerSaga(action: PayloadAction<AuthFields>) {
     yield put(loginUserSuccess(res.data.user));
   } catch {
     yield put(loginUserFailure('Login failed'));
+    toast('Login failed, try again');
   }
 }

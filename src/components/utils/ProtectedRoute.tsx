@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router';
-import { login } from '../../constants';
 
+import { login } from '../../constants';
 import { useUser } from '../../store/user/hook';
 
 export default function ProtectedRoute({ component, ...rest }: any) {

@@ -3,6 +3,7 @@ import { Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { Beer } from '../../../models/Beer';
+import LikeButton from '../../utils/LikeButton';
 
 type Props = {
   beer: Beer;
@@ -10,18 +11,26 @@ type Props = {
 
 export default function BeerItem({ beer }: Props) {
   return (
-    <div className="col-sm-12 col-lg-6 my-2" key={beer.id}>
+    <div className="col-sm-12 col-lg-6 my-1">
       <Card>
-        <Card.Title className="pl-4 pt-4">{beer.name}</Card.Title>
+        <Card.Title className="pl-4 pt-4">
+          <Row>
+            <Col xs={10}>{beer.name}</Col>
+            <Col xs={2}>
+              <LikeButton isFavourite={beer.isFavourite} beer={beer}/>
+            </Col>
+          </Row>
+        </Card.Title>
         <Card.Body>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Row>
-                <Col xs={12} sm={6}>
-                  Brand: {beer.brand}
+                <Col xs={6} sm={6}>
+                  <span className="font-weight-bold">Brand:</span> {beer.brand}
                 </Col>
-                <Col xs={12} sm={6}>
-                  Alcohol: {beer.alcohol}
+                <Col xs={6} sm={6}>
+                  <span className="font-weight-bold">Alcohol:</span>{' '}
+                  {beer.alcohol}
                 </Col>
               </Row>
             </ListGroup.Item>

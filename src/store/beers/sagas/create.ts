@@ -3,7 +3,7 @@ import axios from 'axios';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { toast } from "react-toastify";
 
-import { CREATE_BEER_REQUEST } from '../actions/types/create';
+import { CREATE_BEER_REQUEST } from '../actions/types';
 import { Beer } from '../../../models/Beer';
 import { createBeerUrl } from '../constants';
 import { createBeerFailure, createBeerSuccess } from '../api';
