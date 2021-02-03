@@ -1,3 +1,13 @@
 body {
   overflow: auto;
 }
+
+div.beer-item > .card {
+  transition: 0.3s transform cubic-bezier(.155,1.105,.295,1.12), .3s box-shadow, 1.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+}
+
+div.beer-item > .card:hover {
+  transform: scale(1.01);
+  z-index: 1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(110, 82, 82, 0.26);
+}

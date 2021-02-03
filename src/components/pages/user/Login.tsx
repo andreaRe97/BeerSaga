@@ -12,17 +12,24 @@ export default function Login() {
   });
   const { loginUser } = useUser();
   const { goToBeerList } = useNavigation();
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setAuthFields({ ...authFields, [e.target.name]: e.target.value });
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
     loginUser(authFields);
     goToBeerList();
+    }
+    catch {
+      console.log();
+      
+    }
   };
 
   return (
-    <Form className="col-md-6 offset-md-3 mt-5" onSubmit={handleFormSubmit}>
+    <Form className="col-md-2 offset-md-5 mt-5" onSubmit={handleFormSubmit}>
       <h2 className="text-center">Login</h2>
       <Form.Group controlId="username">
         <Form.Label>Username</Form.Label>
@@ -46,7 +53,11 @@ export default function Login() {
           required
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button
+        disabled={authFields.identifier === '' && authFields.password === ''}
+        variant="primary"
+        type="submit"
+      >
         Submit
       </Button>
     </Form>

@@ -15,7 +15,7 @@ export const putBeerSuccessCase = (
 ) => ({
   ...state,
   status: 'updated',
-  data: state.data.map(item => item.id === action.payload.id ? action.payload : item)
+  data: {...state.data, [action.payload.id!]: action.payload }
 });
 
 export const putBeerFailureCase = (

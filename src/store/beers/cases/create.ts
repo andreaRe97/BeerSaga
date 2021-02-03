@@ -1,8 +1,8 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Beer } from '../../../models/Beer';
-import { CREATE_BEER_FAILURE, CREATE_BEER_SUCCESS } from '../actions/types/create';
-import { INITIAL_STATE as BeerState } from '../reducers/beer';
+import { CREATE_BEER_FAILURE, CREATE_BEER_SUCCESS } from '../actions/types';
+import { INITIAL_STATE as BeerState } from '../reducers';
 
 export const createBeerRequestCase = (state: typeof BeerState) => ({
   ...state,
@@ -15,7 +15,13 @@ export const createBeerSuccessCase = (
 ) => ({
   ...state,
   status: 'created',
-  data: [...state.data, action.payload]
+  data: {
+    byIds: {
+      ...state.data.byIds,
+      [action.payload.id!]: action.payload
+    },
+    allIds: [...state.data.allIds, action.payload.id]
+  }
 });
 
 export const createBeerFailureCase = (

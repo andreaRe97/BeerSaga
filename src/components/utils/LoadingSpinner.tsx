@@ -7,7 +7,7 @@ type Props = {
 
 export default function LoadingSpinner({ message }: Props) {
   return (
-    <Row className="text-center text-white">
+    <Row className="text-center text-white mx-auto">
       <Col xs={12}>
         <h3>{message}</h3>
       </Col>

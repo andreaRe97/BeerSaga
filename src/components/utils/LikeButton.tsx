@@ -1,5 +1,5 @@
+import { StarFillIcon, StarIcon } from '@primer/octicons-react';
 import React from 'react';
-import { Button } from 'react-bootstrap';
 
 import { Beer } from '../../models/Beer';
 import { useBeers } from '../../store/beers/hook';
@@ -17,12 +17,8 @@ export default function LikeButton({ beer, isFavourite }: Props) {
   }
 
   return (
-    <Button
-      className={`${isFavourite ? 'active' : ''}`}
-      variant="outline-danger"
-      onClick={addBeerToFavourites}
-    >
-      Favourite
-    </Button>
+    <span className="text-warning ml-2" onClick={addBeerToFavourites}>
+      {isFavourite ? <StarFillIcon size={24} /> : <StarIcon size={24} />}
+    </span>
   );
 }

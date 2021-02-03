@@ -1,7 +1,8 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
 import { Beer } from '../../../models/Beer';
-import { INITIAL_STATE as BeerState } from '../reducers/beer';
+import { INITIAL_STATE as BeerState } from '../reducers';
 import { FETCH_BEERS_SUCCESS, FETCH_BEERS_FAILURE } from '../actions/types';
 
 export const fetchBeersRequestCase = (state: typeof BeerState) => ({
@@ -12,7 +13,14 @@ export const fetchBeersRequestCase = (state: typeof BeerState) => ({
 export const fetchBeersSuccessCase = (
   state: typeof BeerState,
   action: PayloadAction<Beer[], typeof FETCH_BEERS_SUCCESS>
-) => ({ ...state, status: 'loaded', data: action.payload});
+) => ({ 
+  ...state, 
+  status: 'loaded', 
+  data: {
+    byIds: _.mapKeys(action.payload, 'id'),
+    allIds: action.payload.map(item => item.id)
+  }
+});
 
 export const fetchBeersFailureCase = (
   state: typeof BeerState,

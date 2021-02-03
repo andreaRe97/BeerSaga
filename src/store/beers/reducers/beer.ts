@@ -10,8 +10,14 @@ import {
   putBeerRequestCase,
   putBeerSuccessCase,
   putBeerFailureCase,
+  deleteBeerRequestCase, 
+  deleteBeerSuccessCase,
+  deleteBeerFailureCase
 } from '../cases';
 import {
+  DELETE_BEER_FAILURE,
+  DELETE_BEER_REQUEST,
+  DELETE_BEER_SUCCESS,
   FETCH_BEERS_FAILURE,
   FETCH_BEERS_REQUEST,
   FETCH_BEERS_SUCCESS,
@@ -19,21 +25,27 @@ import {
   PUT_BEER_REQUEST,
   PUT_BEER_SUCCESS,
 } from '../actions/types';
-import { Beer } from '../../../models/Beer';
 import {
   CREATE_BEER_FAILURE,
   CREATE_BEER_REQUEST,
   CREATE_BEER_SUCCESS,
 } from '../actions/types/create';
+import { Beer } from '../../../models/Beer';
 
 export type BeerState = {
-  data: Beer[];
+  data: {
+    byIds: _.Dictionary<Beer> | undefined,
+    allIds: any
+  };
   status: string;
   errors: string[];
 };
 
 export const INITIAL_STATE: BeerState = {
-  data: [],
+  data: {
+    byIds: undefined,
+    allIds: []
+  },
   status: 'idle',
   errors: [],
 };
@@ -49,5 +61,8 @@ export const beerReducer = createReducer(INITIAL_STATE, (builder) => {
     .addCase(PUT_BEER_REQUEST, putBeerRequestCase)
     .addCase(PUT_BEER_SUCCESS, putBeerSuccessCase)
     .addCase(PUT_BEER_FAILURE, putBeerFailureCase)
+    .addCase(DELETE_BEER_REQUEST, deleteBeerRequestCase)
+    .addCase(DELETE_BEER_SUCCESS, deleteBeerSuccessCase)
+    .addCase(DELETE_BEER_FAILURE, deleteBeerFailureCase)
     .addDefaultCase((state) => state);
 });

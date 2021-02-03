@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 import { CREATE_BEER_REQUEST } from '../actions/types';
 import { Beer } from '../../../models/Beer';
@@ -13,15 +13,11 @@ export function* watcherSaga() {
 }
 
 function createBeer(beer: Beer) {
-  return axios.post(
-    createBeerUrl,
-    beer,
-    {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      },
-    }
-  );
+  return axios.post(createBeerUrl, beer, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
 }
 
 function* workerSaga(action: PayloadAction<Beer>) {

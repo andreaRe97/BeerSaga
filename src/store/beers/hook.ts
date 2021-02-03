@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Beer } from '../../models/Beer';
 import { AppState } from '../rootReducer';
-import { createBeerRequest, putBeerRequest } from './api';
+import { createBeerRequest, deleteBeerRequest, putBeerRequest } from './api';
 import { fetchBeersRequest } from './api/fetch';
 import { BeerState } from './reducers';
 
 export function useBeers() {
-  const { data: beers, status, errors } = useSelector<AppState, BeerState>(
-    (state) => state.beer
+  const { data, status, errors } = useSelector<AppState, BeerState>(
+    (state) => state.beer,
   );
   const dispatch = useDispatch();
 
@@ -21,22 +21,30 @@ export function useBeers() {
     (beer: Beer) => {
       dispatch(createBeerRequest(beer));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const putBeer = useCallback(
     (beer: Beer) => {
       dispatch(putBeerRequest(beer));
     },
-    [dispatch]
+    [dispatch],
+  );
+
+  const deleteBeer = useCallback(
+    (beer: Beer) => {
+      dispatch(deleteBeerRequest(beer));
+    },
+    [dispatch],
   );
 
   return {
-    beers,
+    data,
     status,
     errors,
     fetchBeers,
     createBeer,
-    putBeer
+    putBeer,
+    deleteBeer,
   };
 }

@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rem;
+}
+
+.container > .card {
+  transform-style: preserve-3d;
+  min-height: 40vh;
+  width: 35rem;
+  border-radius: 30px;
+  padding: 0rem 5rem;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+
+.beer {
+  min-height: 15vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.beer img {
+  width: 7rem;
+  z-index: 2;
+  margin: 35px 0;
+  transition: all 0.75s ease-out;
+}
+.circle {
+  width: 12rem;
+  height: 12rem;
+  background: linear-gradient(
+    to right,
+    rgba(245, 197, 66, 0.75),
+    rgba(75, 74, 72, 0.75)
+  );
+  position: absolute;
+  top: 20px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.info div.card-title {
+  font-size: 3rem;
+  transition: all 0.75s ease-out;
+}
