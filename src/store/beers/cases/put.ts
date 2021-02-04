@@ -1,12 +1,13 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from "@reduxjs/toolkit";
 
-import { Beer } from '../../../models/Beer';
-import { PUT_BEER_FAILURE, PUT_BEER_SUCCESS } from '../actions/types';
-import { INITIAL_STATE as BeerState } from '../reducers/beer';
+import { Beer } from "../../../models/Beer";
+import { DomainStatus } from "../../types";
+import { PUT_BEER_FAILURE, PUT_BEER_SUCCESS } from "../actions/types";
+import { INITIAL_STATE as BeerState } from "../reducers/beer";
 
 export const putBeerRequestCase = (state: typeof BeerState) => ({
   ...state,
-  status: 'updating',
+  status: DomainStatus.LOADING,
 });
 
 export const putBeerSuccessCase = (
@@ -14,8 +15,14 @@ export const putBeerSuccessCase = (
   action: PayloadAction<Beer, typeof PUT_BEER_SUCCESS>
 ) => ({
   ...state,
-  status: 'updated',
-  data: {...state.data, [action.payload.id!]: action.payload }
+  status: DomainStatus.LOADED,
+  data: {
+    ...state.data,
+    byIds: {
+      ...state.data.byIds,
+      [action.payload.id!]: action.payload,
+    },
+  },
 });
 
 export const putBeerFailureCase = (
@@ -23,6 +30,6 @@ export const putBeerFailureCase = (
   action: PayloadAction<string, typeof PUT_BEER_FAILURE>
 ) => ({
   ...state,
-  status: 'failed',
-  errors: [...state.errors, action.payload]
+  status: DomainStatus.ERROR,
+  errors: [...state.errors, action.payload],
 });

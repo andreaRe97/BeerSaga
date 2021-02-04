@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import { CREATE_BEER_REQUEST } from '../actions/types';
 import { Beer } from '../../../models/Beer';
-import { createBeerUrl } from '../constants';
+import { baseUrl } from '../constants';
 import { createBeerFailure, createBeerSuccess } from '../api';
 
 export function* watcherSaga() {
@@ -13,7 +13,7 @@ export function* watcherSaga() {
 }
 
 function createBeer(beer: Beer) {
-  return axios.post(createBeerUrl, beer, {
+  return axios.post(baseUrl, beer, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },

@@ -1,12 +1,13 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Beer } from '../../../models/Beer';
+import { DomainStatus } from '../../types';
 import { CREATE_BEER_FAILURE, CREATE_BEER_SUCCESS } from '../actions/types';
 import { INITIAL_STATE as BeerState } from '../reducers';
 
 export const createBeerRequestCase = (state: typeof BeerState) => ({
   ...state,
-  status: 'creating',
+  status: DomainStatus.LOADING,
 });
 
 export const createBeerSuccessCase = (
@@ -14,8 +15,9 @@ export const createBeerSuccessCase = (
   action: PayloadAction<Beer, typeof CREATE_BEER_SUCCESS>
 ) => ({
   ...state,
-  status: 'created',
+  status: DomainStatus.LOADED,
   data: {
+    ...state.data,
     byIds: {
       ...state.data.byIds,
       [action.payload.id!]: action.payload
@@ -29,6 +31,6 @@ export const createBeerFailureCase = (
   action: PayloadAction<string, typeof CREATE_BEER_FAILURE>
 ) => ({
   ...state,
-  status: 'failed',
+  status: DomainStatus.ERROR,
   errors: [...state.errors, action.payload]
 });

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { Beer } from '../../../models/Beer';
-import { deleteBeerUrl } from '../constants';
+import { baseUrl } from '../constants';
 import { DELETE_BEER_REQUEST } from '../actions/types';
 import { deleteBeerFailure, deleteBeerSuccess } from '../api';
 
@@ -13,7 +13,7 @@ export function* watcherSaga() {
 }
 
 function deleteBeer(beer: Beer) {
-  return axios.delete(deleteBeerUrl + `/${beer.id}`, {
+  return axios.delete(baseUrl + `/${beer.id}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },

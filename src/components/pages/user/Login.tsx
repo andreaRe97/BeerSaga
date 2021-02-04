@@ -7,8 +7,8 @@ import { useUser } from '../../../store/user/hook';
 
 export default function Login() {
   const [authFields, setAuthFields] = useState<AuthFields>({
-    identifier: '',
-    password: '',
+    identifier: 'andrea.re',
+    password: '123456',
   });
   const { loginUser } = useUser();
   const { goToBeerList } = useNavigation();
@@ -36,7 +36,7 @@ export default function Login() {
         <Form.Control
           name="identifier"
           type="text"
-          placeholder="username"
+          placeholder="andrea.re"
           value={authFields!.identifier}
           onChange={handleInputChange}
           required
@@ -47,7 +47,7 @@ export default function Login() {
         <Form.Control
           name="password"
           type="password"
-          placeholder="*****"
+          placeholder="123456"
           value={authFields!.password}
           onChange={handleInputChange}
           required

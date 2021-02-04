@@ -2,11 +2,16 @@ export type Beer = {
   id?: string;
   brand: string;
   name: string;
-  style: string;
-  hop: string;
-  yeast: string;
-  malts: string;
-  ibu: number;
   alcohol: number;
   isFavourite: boolean;
-}
+  published_at?: string;
+  created_at?: string;
+  updated_at?: string;
+};
+
+export const BeerMock = {
+  brand: "",
+  name: "",
+  alcohol: 0,
+  isFavourite: false,
+};

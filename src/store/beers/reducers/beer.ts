@@ -1,4 +1,4 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer } from "@reduxjs/toolkit";
 
 import {
   fetchBeersFailureCase,
@@ -10,10 +10,10 @@ import {
   putBeerRequestCase,
   putBeerSuccessCase,
   putBeerFailureCase,
-  deleteBeerRequestCase, 
+  deleteBeerRequestCase,
   deleteBeerSuccessCase,
-  deleteBeerFailureCase
-} from '../cases';
+  deleteBeerFailureCase,
+} from "../cases";
 import {
   DELETE_BEER_FAILURE,
   DELETE_BEER_REQUEST,
@@ -24,18 +24,19 @@ import {
   PUT_BEER_FAILURE,
   PUT_BEER_REQUEST,
   PUT_BEER_SUCCESS,
-} from '../actions/types';
+} from "../actions/types";
 import {
   CREATE_BEER_FAILURE,
   CREATE_BEER_REQUEST,
   CREATE_BEER_SUCCESS,
-} from '../actions/types/create';
-import { Beer } from '../../../models/Beer';
+} from "../actions/types/create";
+import { Beer } from "../../../models/Beer";
+import { DomainStatus } from "../../types";
 
 export type BeerState = {
   data: {
-    byIds: _.Dictionary<Beer> | undefined,
-    allIds: any
+    byIds: _.Dictionary<Beer> | undefined;
+    allIds: any;
   };
   status: string;
   errors: string[];
@@ -44,9 +45,9 @@ export type BeerState = {
 export const INITIAL_STATE: BeerState = {
   data: {
     byIds: undefined,
-    allIds: []
+    allIds: [],
   },
-  status: 'idle',
+  status: DomainStatus.IDLE,
   errors: [],
 };
 

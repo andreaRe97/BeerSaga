@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { Beer } from '../../../models/Beer';
-import { putBeerUrl } from '../constants';
+import { baseUrl } from '../constants';
 import { PUT_BEER_REQUEST } from '../actions/types';
 import { putBeerFailure, putBeerSuccess } from '../api';
 
@@ -13,7 +13,7 @@ export function* watcherSaga() {
 }
 
 function putBeer(beer: Beer) {
-  return axios.put(putBeerUrl + `/${beer.id}`, beer, {
+  return axios.put(baseUrl + `/${beer.id}`, beer, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },

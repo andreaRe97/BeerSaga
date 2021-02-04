@@ -2,7 +2,7 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 import { FETCH_BEERS_REQUEST } from '../actions/types';
-import { fetchBeersUrl } from '../constants';
+import { baseUrl } from '../constants';
 import { fetchBeersSuccess, fetchBeersFailure } from '../api/fetch';
 
 export function* watcherSaga() {
@@ -12,7 +12,7 @@ export function* watcherSaga() {
 function fetchBeers() {
   return axios({
     method: 'get',
-    url: fetchBeersUrl
+    url: baseUrl
   });
 }
 

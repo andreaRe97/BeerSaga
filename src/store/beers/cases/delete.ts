@@ -2,12 +2,13 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
 import { Beer } from '../../../models/Beer';
+import { DomainStatus } from '../../types';
 import { DELETE_BEER_FAILURE, DELETE_BEER_SUCCESS } from '../actions/types';
 import { INITIAL_STATE as BeerState } from '../reducers';
 
 export const deleteBeerRequestCase = (state: typeof BeerState) => ({
   ...state,
-  status: 'deleting',
+  status: DomainStatus.LOADING,
 });
 
 export const deleteBeerSuccessCase = (
@@ -18,12 +19,12 @@ export const deleteBeerSuccessCase = (
   const newData = {
     ...state.data,
     byIds: _.omit(state.data.byIds, action.payload.id!),
-    allIds: state.data.allIds.filter((item: number) => item !== parseInt(action.payload.id!))
+    allIds: state.data.allIds.filter((item: string) => item !== action.payload.id!)
   }
 
   return {
     ...state,
-    status: 'deleted',
+    status: DomainStatus.LOADED,
     data: {...newData}
   };
 };
@@ -33,6 +34,6 @@ export const deleteBeerFailureCase = (
   action: PayloadAction<string, typeof DELETE_BEER_FAILURE>,
 ) => ({
   ...state,
-  status: 'failed',
+  status: DomainStatus.ERROR,
   errors: [...state.errors, action.payload],
 });
