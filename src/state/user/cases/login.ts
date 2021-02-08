@@ -1,11 +1,13 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../../../models/User';
-import { LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS } from '../actions/types';
-import { INITIAL_STATE as UserState } from '../reducers/user';
+import { PayloadAction } from "@reduxjs/toolkit";
+
+import { User } from "../../../models/User";
+import { DomainStatus } from "../../types";
+import { LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS } from "../actions/types";
+import { INITIAL_STATE as UserState } from "../reducers/user";
 
 export const loginUserRequestCase = (state: typeof UserState) => ({
   ...state,
-  status: 'loggin-in',
+  status: DomainStatus.LOADING,
 });
 
 export const loginUserSuccessCase = (
@@ -13,7 +15,7 @@ export const loginUserSuccessCase = (
   action: PayloadAction<User, typeof LOGIN_USER_SUCCESS>
 ) => ({
   ...state,
-  status: 'logged-in',
+  status: DomainStatus.LOADED,
   data: action.payload,
 });
 
@@ -22,6 +24,6 @@ export const loginUserFailureCase = (
   action: PayloadAction<string, typeof LOGIN_USER_FAILURE>
 ) => ({
   ...state,
-  status: 'login-failed',
+  status: DomainStatus.ERROR,
   errors: [...state.errors, action.payload],
 });

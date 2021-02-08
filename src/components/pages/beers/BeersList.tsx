@@ -6,12 +6,13 @@ import { Beer } from "../../../models/Beer";
 import { useBeers } from "../../../store/beers/hook";
 import BeerItem from "./BeerItem";
 import LoadingSpinner from "../../utils/LoadingSpinner";
+import { DomainStatus } from "../../../store/types";
 
 export default function BeersList() {
   const { fetchBeers, data, status } = useBeers();
 
   useEffect(() => {
-    if (status === "idle") fetchBeers();
+    if (status === DomainStatus.IDLE) fetchBeers();
   }, [fetchBeers, status]);
 
   const renderBeers = () => {
@@ -22,7 +23,7 @@ export default function BeersList() {
 
   return (
     <div className="row mx-2 mt-2">
-      {status === "fetching" ? (
+      {status === DomainStatus.LOADING ? (
         <LoadingSpinner message="Fetching beers" />
       ) : (
         renderBeers()
