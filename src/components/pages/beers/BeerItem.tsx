@@ -2,8 +2,9 @@ import React from "react";
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 
 import { Beer } from "../../../models/Beer";
-import { useBeers } from "../../../store/beers/hook";
-import { useUser } from "../../../store/user/hook";
+import { useBeers } from "../../../state/beers/hook";
+import { DomainStatus } from "../../../state/types";
+import { useUser } from "../../../state/user/hook";
 import LikeButton from "../../utils/LikeButton";
 
 type Props = {
@@ -37,7 +38,7 @@ export default function BeerItem({ beer }: Props) {
                 </Col>
               </Row>
             </ListGroup.Item>
-            {status === "logged-in" ? (
+            {status === DomainStatus.LOADED ? (
               <ListGroup.Item>
                 <Row>
                   <Col className="text-right">

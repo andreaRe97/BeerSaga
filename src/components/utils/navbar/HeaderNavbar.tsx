@@ -2,7 +2,8 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { useUser } from '../../../store/user/hook';
+import { DomainStatus } from '../../../state/types';
+import { useUser } from '../../../state/user/hook';
 
 export default function HeaderNavbar() {
   const { user, status } = useUser();
@@ -12,7 +13,7 @@ export default function HeaderNavbar() {
       <Navbar.Brand as={Link} to="/">
         BeerSaga
       </Navbar.Brand>
-      {status === 'logged-in' ? (
+      {status === DomainStatus.LOADED ? (
         <Nav>
           <Nav.Link as={Link} to="/beers/new">
             Add a new beer
@@ -20,7 +21,7 @@ export default function HeaderNavbar() {
         </Nav>
       ) : null}
       <Nav className="ml-auto mr-1">
-        {status === 'logged-in' ? (
+        {status === DomainStatus.LOADED ? (
           <span className="text-muted">{user!.username}</span>
         ) : (
           <Nav.Link as={Link} to="/login">

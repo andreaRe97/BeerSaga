@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigation } from '../../../hooks';
 
 import { Beer, BeerMock } from '../../../models/Beer';
-import { useBeers } from '../../../store/beers/hook';
+import { useBeers } from '../../../state/beers/hook';
 
 export default function BeerNew() {
   const [beer, setBeer] = useState<Beer>(BeerMock);

@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigation } from '../../../hooks';
 
 import { AuthFields } from '../../../models/User';
-import { useUser } from '../../../store/user/hook';
+import { useUser } from '../../../state/user/hook';
 
 export default function Login() {
   const [authFields, setAuthFields] = useState<AuthFields>({

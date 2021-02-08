@@ -2,7 +2,7 @@ import { StarFillIcon, StarIcon } from '@primer/octicons-react';
 import React from 'react';
 
 import { Beer } from '../../models/Beer';
-import { useBeers } from '../../store/beers/hook';
+import { useBeers } from '../../state/beers/hook';
 
 type Props = {
   isFavourite: boolean;
