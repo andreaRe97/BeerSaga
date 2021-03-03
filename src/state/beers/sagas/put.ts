@@ -1,12 +1,12 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { call, put, takeLatest } from 'redux-saga/effects';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { PayloadAction } from "@reduxjs/toolkit";
+import { call, put, takeLatest } from "redux-saga/effects";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-import { Beer } from '../../../models/Beer';
-import { baseUrl } from '../constants';
-import { PUT_BEER_REQUEST } from '../actions/types';
-import { putBeerFailure, putBeerSuccess } from '../api';
+import { Beer } from "../../../models/Beer";
+import { baseUrl } from "../constants";
+import { PUT_BEER_REQUEST } from "../actions/types";
+import { putBeerFailure, putBeerSuccess } from "../api";
 
 export function* watcherSaga() {
   yield takeLatest(PUT_BEER_REQUEST, workerSaga);
@@ -15,7 +15,7 @@ export function* watcherSaga() {
 function putBeer(beer: Beer) {
   return axios.put(baseUrl + `/${beer.id}`, beer, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
 }
@@ -23,9 +23,10 @@ function putBeer(beer: Beer) {
 export function* workerSaga(action: PayloadAction<Beer>) {
   try {
     const res = yield call(putBeer, action.payload);
-    toast('Beer successfully modified');
+    toast("Beer successfully modified");
     yield put(putBeerSuccess(res.data));
   } catch {
-    yield put(putBeerFailure('Put beer failed'));
+    toast("Something went wrong");
+    yield put(putBeerFailure("Put beer failed"));
   }
 }

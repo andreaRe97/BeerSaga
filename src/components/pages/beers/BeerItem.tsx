@@ -21,7 +21,9 @@ export default function BeerItem({ beer }: Props) {
           <Row>
             <Col xs={12}>
               {beer.name}
-              <LikeButton isFavourite={beer.isFavourite} beer={beer} />
+              {status === DomainStatus.LOADED ? (
+                <LikeButton beer={beer} />
+              ) : null}
             </Col>
           </Row>
         </Card.Title>

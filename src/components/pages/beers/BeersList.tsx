@@ -23,7 +23,7 @@ export default function BeersList() {
 
   return (
     <div className="row mx-2 mt-2">
-      {status === DomainStatus.LOADING ? (
+      {status === DomainStatus.IDLE ? (
         <LoadingSpinner message="Fetching beers" />
       ) : (
         renderBeers()

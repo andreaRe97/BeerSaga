@@ -1,14 +1,14 @@
-import React, { FormEvent, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useNavigation } from '../../../hooks';
+import React, { FormEvent, useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useNavigation } from "../../../hooks";
 
-import { AuthFields } from '../../../models/User';
-import { useUser } from '../../../state/user/hook';
+import { AuthFields } from "../../../models/User";
+import { useUser } from "../../../state/user/hook";
 
 export default function Login() {
   const [authFields, setAuthFields] = useState<AuthFields>({
-    identifier: 'andrea.re',
-    password: '123456',
+    identifier: "",
+    password: "",
   });
   const { loginUser } = useUser();
   const { goToBeerList } = useNavigation();
@@ -19,12 +19,10 @@ export default function Login() {
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-    loginUser(authFields);
-    goToBeerList();
-    }
-    catch {
+      loginUser(authFields);
+      goToBeerList();
+    } catch {
       console.log();
-      
     }
   };
 
@@ -36,7 +34,7 @@ export default function Login() {
         <Form.Control
           name="identifier"
           type="text"
-          placeholder="andrea.re"
+          placeholder="username"
           value={authFields!.identifier}
           onChange={handleInputChange}
           required
@@ -47,14 +45,14 @@ export default function Login() {
         <Form.Control
           name="password"
           type="password"
-          placeholder="123456"
+          placeholder="password"
           value={authFields!.password}
           onChange={handleInputChange}
           required
         />
       </Form.Group>
       <Button
-        disabled={authFields.identifier === '' && authFields.password === ''}
+        disabled={authFields.identifier === "" || authFields.password === ""}
         variant="primary"
         type="submit"
       >

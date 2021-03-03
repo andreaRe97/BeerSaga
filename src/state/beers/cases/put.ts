@@ -3,15 +3,15 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { Beer } from "../../../models/Beer";
 import { DomainStatus } from "../../types";
 import { PUT_BEER_FAILURE, PUT_BEER_SUCCESS } from "../actions/types";
-import { INITIAL_STATE as BeerState } from "../reducers/beer";
+import { BeerState } from "../reducers/beer";
 
-export const putBeerRequestCase = (state: typeof BeerState) => ({
+export const putBeerRequestCase = (state: BeerState): BeerState => ({
   ...state,
   status: DomainStatus.LOADING,
 });
 
 export const putBeerSuccessCase = (
-  state: typeof BeerState,
+  state: BeerState,
   action: PayloadAction<Beer, typeof PUT_BEER_SUCCESS>
 ) => ({
   ...state,
@@ -26,9 +26,9 @@ export const putBeerSuccessCase = (
 });
 
 export const putBeerFailureCase = (
-  state: typeof BeerState,
+  state: BeerState,
   action: PayloadAction<string, typeof PUT_BEER_FAILURE>
-) => ({
+): BeerState => ({
   ...state,
   status: DomainStatus.ERROR,
   errors: [...state.errors, action.payload],
