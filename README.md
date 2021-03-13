@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Questo progetto é stato realizzato per lo studio di un'integrazione tra Strapi e Redux. Potete trovare una guida completa qui https://medium.com/vlk-studio/strapi-autenticazione-e-crud-in-pochi-e-semplici-passi-975403c5eb3c.
 
 ## Available Scripts
 
